@@ -1,18 +1,21 @@
+import java.util.Collections.*;
+import java.util.*;
 /*
 CTCI
 1. delete duplicate node from linked list
+2. find kth node in the linked list from last
 
 */
 
-
-import java.util.Collections.*;
-import java.util.*;
 
 class Node{
 	Node next = null;
 
 	int data;
 
+	public Node(){
+
+	}
 
 	public Node(int d){
 		data = d;
@@ -45,6 +48,36 @@ class Node{
 			n = n.next;
 		}
 	}
+
+
+	public Node findKthNodeFromLast(Node head,int k){
+
+		// two pointer approach
+		// fist from 0 ,second from the kth from the first
+
+		Node first = new Node();
+		Node second = new Node();
+
+		first.next = head;
+		second.next = head;
+
+		int cnt = 0;
+		while(second != null){
+
+			if (cnt >= k){
+				first = first.next;
+			}
+			second = second.next;
+
+			cnt ++;
+
+
+		}
+
+
+		return first;
+	}
+
 }
 
 
@@ -66,7 +99,9 @@ public class LinkedList1{
 		n.deleteDups(n);
 
 
+		Node kthNode = n.findKthNodeFromLast(first.next,3);
 
+		System.out.println(kthNode.data);
 		// nth node to last
 
 
